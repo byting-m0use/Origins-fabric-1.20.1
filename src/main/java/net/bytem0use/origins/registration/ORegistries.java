@@ -4,8 +4,6 @@ import com.google.common.collect.Maps;
 import com.mojang.logging.LogUtils;
 import com.mojang.serialization.Lifecycle;
 import net.bytem0use.origins.api.Power;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.registry.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
