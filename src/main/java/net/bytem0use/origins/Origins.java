@@ -1,7 +1,6 @@
 package net.bytem0use.origins;
 
 import net.bytem0use.origins.attributes.OriginsAttributes;
-import net.bytem0use.origins.registration.ORegistries;
 import net.bytem0use.origins.tester.ModEffects;
 import net.fabricmc.api.ModInitializer;
 
