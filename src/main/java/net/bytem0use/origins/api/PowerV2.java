@@ -25,6 +25,7 @@ public class PowerV2 extends StatusEffect implements Comparable<PowerV2> {
     private static final Logger LOGGER = LogUtils.getLogger();
     public static final int INFINITE = -1;
     private StatusEffect type;
+
     private int duration;
     private int amplifier;
     private boolean ambient;
@@ -53,6 +54,11 @@ public class PowerV2 extends StatusEffect implements Comparable<PowerV2> {
         this.ambient = ambient;
         this.showParticles = showParticles;
         this.showIcon = showIcon;
+    }
+
+    public PowerV2(StatusEffectCategory category, int duration, StatusEffect type) {
+        super(category, duration);
+        this.type = type;
     }
 
     public Optional<PowerV2.FactorCalculationData> getFactorCalculationData() {
@@ -155,6 +161,7 @@ public class PowerV2 extends StatusEffect implements Comparable<PowerV2> {
     public boolean update(LivingEntity entity, Runnable overwriteCallback) {
         if (this.isActive()) {
             int i = this.isInfinite() ? entity.age : this.duration;
+            assert this.type != null;
             if (this.type.canApplyUpdateEffect(i, this.amplifier)) {
                 this.applyUpdateEffect(entity);
             }
@@ -185,11 +192,13 @@ public class PowerV2 extends StatusEffect implements Comparable<PowerV2> {
 
     public void applyUpdateEffect(LivingEntity entity) {
         if (this.isActive()) {
+            assert this.type != null;
             this.type.applyUpdateEffect(entity, this.amplifier);
         }
     }
 
     public String getTranslationKey() {
+        assert this.type != null;
         return this.type.getTranslationKey();
     }
 
@@ -220,14 +229,16 @@ public class PowerV2 extends StatusEffect implements Comparable<PowerV2> {
         if (this == o) {
             return true;
         } else {
-            return o instanceof PowerV2 power && this.duration == power.duration
-                    && this.amplifier == power.amplifier
-                    && this.ambient == power.ambient
-                    && this.type.equals(power.type);
+            if (!(o instanceof PowerV2 power) || this.duration != power.duration
+                    || this.amplifier != power.amplifier
+                    || this.ambient != power.ambient) return false;
+            assert this.type != null;
+            return this.type.equals(power.type);
         }
     }
 
     public int hashCode() {
+        assert this.type != null;
         int i = this.type.hashCode();
         i = 31 * i + this.duration;
         i = 31 * i + this.amplifier;
@@ -296,17 +307,23 @@ public class PowerV2 extends StatusEffect implements Comparable<PowerV2> {
 
     public int compareTo(@NotNull PowerV2 power) {
         int i = 32147;
-        return (this.getDuration() <= 32147 || power.getDuration() <= 32147) && (!this.isAmbient() || !power .isAmbient())
-                ? ComparisonChain.start()
-                .compareFalseFirst(this.isAmbient(), power.isAmbient())
-                .compareFalseFirst(this.isInfinite(), power.isInfinite())
-                .compare(this.getDuration(), power.getDuration())
-                .compare(this.getEffectType().getColor(), power.getEffectType().getColor())
-                .result()
-                : ComparisonChain.start()
-                .compare(this.isAmbient(), power.isAmbient())
-                .compare(this.getEffectType().getColor(), power.getEffectType().getColor())
-                .result();
+        if ((this.getDuration() <= 32147 || power.getDuration() <= 32147) && (!this.isAmbient() || !power.isAmbient())) {
+            assert this.getEffectType() != null;
+            assert power.getEffectType() != null;
+            return ComparisonChain.start()
+                    .compareFalseFirst(this.isAmbient(), power.isAmbient())
+                    .compareFalseFirst(this.isInfinite(), power.isInfinite())
+                    .compare(this.getDuration(), power.getDuration())
+                    .compare(this.getEffectType().getColor(), power.getEffectType().getColor())
+                    .result();
+        } else {
+            assert power.getEffectType() != null;
+            assert this.getEffectType() != null;
+            return ComparisonChain.start()
+                    .compare(this.isAmbient(), power.isAmbient())
+                    .compare(this.getEffectType().getColor(), power.getEffectType().getColor())
+                    .result();
+        }
     }
 
     public static class FactorCalculationData {
