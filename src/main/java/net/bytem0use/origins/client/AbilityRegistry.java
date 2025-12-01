@@ -1,17 +1,18 @@
-package net.bytem0use.origins.tester;
+package net.bytem0use.origins.client;
 
 import net.bytem0use.origins.Origins;
 import net.bytem0use.origins.api.OriginsAbility;
 import net.bytem0use.origins.api.type.AbilityType;
+import net.bytem0use.origins.tester.ClimbingAbility;
 import net.minecraft.util.Identifier;
 
 import java.util.*;
 
 public class AbilityRegistry {
-    public static final Map<String, OriginsAbility> ABILITY_MAP = new HashMap();
-    public static final ArrayList<OriginsAbility> abilities = new ArrayList();
-    public static final HashSet<Identifier> identifiers = new HashSet();
-    public static final ArrayList<OriginsAbility> baseAbilities = new ArrayList();
+    public static final Map<String, OriginsAbility> ABILITY_MAP = new HashMap<>();
+    public static final ArrayList<OriginsAbility> abilities = new ArrayList<>();
+    public static final HashSet<Identifier> identifiers = new HashSet<>();
+    public static final ArrayList<OriginsAbility> baseAbilities = new ArrayList<>();
 
     public static OriginsAbility getAbility(String identifier) {
         OriginsAbility tAbility = ABILITY_MAP.get(identifier);

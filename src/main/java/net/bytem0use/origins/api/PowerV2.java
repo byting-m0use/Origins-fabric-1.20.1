@@ -15,6 +15,7 @@ import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.util.dynamic.Codecs;
 import net.minecraft.util.math.MathHelper;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 
@@ -37,7 +38,7 @@ public class PowerV2 extends StatusEffect implements Comparable<PowerV2> {
         super(category, color);
     }
 
-    public PowerV2(StatusEffectCategory category, int duration, boolean ambient, boolean showParticles, boolean showIcon, PowerV2 hiddenEffect) {
+    public PowerV2(StatusEffectCategory category, int duration, boolean ambient, boolean showParticles, boolean showIcon, @Nullable PowerV2 hiddenEffect) {
         super(category, duration);
         this.duration = duration;
         this.hiddenEffect = hiddenEffect;
@@ -66,7 +67,7 @@ public class PowerV2 extends StatusEffect implements Comparable<PowerV2> {
         this.showIcon = that.showIcon;
     }
 
-    public boolean upgrade(PowerV2 that, StatusEffectCategory effect, int integer) {
+    public void upgrade(PowerV2 that, StatusEffectCategory effect, int integer) {
         if (this.type != that.type) {
             LOGGER.warn("This method should only be called for matching effects!");
         }
@@ -109,7 +110,6 @@ public class PowerV2 extends StatusEffect implements Comparable<PowerV2> {
             bl = true;
         }
 
-        return bl;
     }
 
     private boolean lastsShorterThan(PowerV2 effect) {
@@ -175,12 +175,12 @@ public class PowerV2 extends StatusEffect implements Comparable<PowerV2> {
         return this.isInfinite() || this.duration > 0;
     }
 
-    private int updateDuration() {
+    private void updateDuration() {
         if (this.hiddenEffect != null) {
             this.hiddenEffect.updateDuration();
         }
 
-        return this.duration = this.mapDuration(duration -> duration - 1);
+        this.duration = this.mapDuration(duration -> duration - 1);
     }
 
     public void applyUpdateEffect(LivingEntity entity) {
@@ -234,10 +234,9 @@ public class PowerV2 extends StatusEffect implements Comparable<PowerV2> {
         return 31 * i + (this.ambient ? 1 : 0);
     }
 
-    public NbtCompound writeNbt(NbtCompound nbt) {
+    public void writeNbt(NbtCompound nbt) {
         nbt.putInt("Id", StatusEffect.getRawId(this.getEffectType()));
         this.writeTypelessNbt(nbt);
-        return nbt;
     }
 
     private void writeTypelessNbt(NbtCompound nbt) {
@@ -252,13 +251,9 @@ public class PowerV2 extends StatusEffect implements Comparable<PowerV2> {
             nbt.put("HiddenEffect", nbtCompound);
         }
 
-        this.factorCalculationData
-                .ifPresent(
-                        factorCalculationData -> PowerV2.FactorCalculationData.CODEC
-                                .encodeStart(NbtOps.INSTANCE, factorCalculationData)
-                                .resultOrPartial(LOGGER::error)
-                                .ifPresent(factorCalculationDataNbt -> nbt.put("FactorCalculationData", factorCalculationDataNbt))
-                );
+        this.factorCalculationData.flatMap(factorCalculationData -> FactorCalculationData.CODEC
+                .encodeStart(NbtOps.INSTANCE, factorCalculationData)
+                .resultOrPartial(LOGGER::error)).ifPresent(factorCalculationDataNbt -> nbt.put("FactorCalculationData", factorCalculationDataNbt));
     }
 
     @Nullable
@@ -299,7 +294,7 @@ public class PowerV2 extends StatusEffect implements Comparable<PowerV2> {
         return new StatusEffectInstance(type, j, Math.max(i, 0), bl, bl2, bl3, statusEffectInstance, optional);
     }
 
-    public int compareTo(PowerV2 power) {
+    public int compareTo(@NotNull PowerV2 power) {
         int i = 32147;
         return (this.getDuration() <= 32147 || power.getDuration() <= 32147) && (!this.isAmbient() || !power .isAmbient())
                 ? ComparisonChain.start()

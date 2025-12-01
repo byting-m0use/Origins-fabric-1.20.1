@@ -1,6 +1,8 @@
 package net.bytem0use.origins.api;
 
 import net.bytem0use.origins.api.type.AbilityType;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 public class OriginsAbility {
     private static String keybind;
@@ -17,6 +19,10 @@ public class OriginsAbility {
     public OriginsAbility(String abilityID, AbilityType abilityType) {
         this.getAbilityID();
         this.getAbilityType(AbilityType.TOGGLE);
+    }
+
+    @Environment(EnvType.CLIENT)
+    public void localEvents() {
     }
 
     public Object getAbilityID() {
