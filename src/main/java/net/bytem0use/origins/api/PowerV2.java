@@ -32,7 +32,7 @@ public class PowerV2 extends StatusEffect implements Comparable<PowerV2> {
     private boolean showIcon;
     @Nullable
     private PowerV2 hiddenEffect;
-    private Optional<PowerV2.FactorCalculationData> factorCalculationData;
+    private final Optional<PowerV2.FactorCalculationData> factorCalculationData = Optional.empty();
 
     protected PowerV2(StatusEffectCategory category, int color) {
         super(category, color);
