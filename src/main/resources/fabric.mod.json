@@ -1,9 +1,9 @@
 {
 	"schemaVersion": 1,
-	"id": "origins",
+	"id": "core_power",
 	"version": "0.4",
-	"name": "Origins",
-	"description": "The fabric version of my mod Origins, acting as the backbone for my fabric based superhero mods.",
+	"name": "Core Power: Lib",
+	"description": "The fabric version of my mod 'Core Power: Lib', acting as the backbone for my fabric based superhero mods.",
 	"authors": [
 		"ByteM0use"
 	],
@@ -12,21 +12,21 @@
 		"sources": "https://github.com/FabricMC/fabric-example-mod"
 	},
 	"license": "CC0-1.0",
-	"icon": "assets/origins/icon.png",
+
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"net.bytem0use.origins.Origins"
+			"net.bytem0use.core_power.CorePower"
 		],
       "client": [
-        "net.bytem0use.origins.client.OriginsClient"
+        "net.bytem0use.core_power.client.CorePowerClient"
       ],
 		"fabric-datagen": [
-			"net.bytem0use.origins.OriginsDataGenerator"
+			"net.bytem0use.core_power.CorePowerDataGenerator"
 		]
 	},
 	"mixins": [
-		"origins.mixins.json"
+      "core_power.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.17.3",

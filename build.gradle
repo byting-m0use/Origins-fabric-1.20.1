@@ -6,6 +6,10 @@ plugins {
 version = project.mod_version
 group = project.maven_group
 
+apply plugin: 'maven-publish'
+
+group = 'com.github.ByteM0use'
+
 base {
 	archivesName = project.archives_base_name
 }

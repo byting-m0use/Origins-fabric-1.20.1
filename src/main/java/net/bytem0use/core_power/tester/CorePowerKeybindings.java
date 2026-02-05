@@ -6,7 +6,7 @@ import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import org.lwjgl.glfw.GLFW;
 
-public class OriginsKeybindings {
+public class CorePowerKeybindings {
     public static final String KEY_CATEGORY_ORIGINS = "key.category.origins.origins_mod";
     public static final String CLIMB = "key.origins.climb";
     public static final String WEB_ATTACH = "key.origins.web_attach";
