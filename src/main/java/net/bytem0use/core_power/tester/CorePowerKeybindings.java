@@ -1,9 +1,15 @@
 package net.bytem0use.core_power.tester;
 
+import com.eliotlash.mclib.math.functions.classic.Mod;
+import net.bytem0use.core_power.api.abilities.keys.Ability1;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.text.Text;
 import org.lwjgl.glfw.GLFW;
 
 public class CorePowerKeybindings {
@@ -16,14 +22,19 @@ public class CorePowerKeybindings {
 
     public static void registerKeyInputs() {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
+            if( climb.wasPressed() && client.player.hasStatusEffect(ModEffects.ARACHNID_EFFECT)) {
+
+                assert client.player != null;
+                client.player.sendMessage(Text.literal("It was pressed. Woo"));
+            }
         });
     }
 
     public static void register() {
-        climb = KeyBindingHelper.registerKeyBinding(new KeyBinding(
+        climb = KeyBindingHelper.registerKeyBinding(new Ability1(
                 CLIMB,
                 InputUtil.Type.KEYSYM,
-                GLFW.GLFW_KEY_O,
+                GLFW.GLFW_KEY_G,
                 KEY_CATEGORY_ORIGINS
         ));
 
