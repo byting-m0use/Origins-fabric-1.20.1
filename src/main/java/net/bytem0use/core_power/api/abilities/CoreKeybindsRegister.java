@@ -9,13 +9,13 @@ import org.lwjgl.glfw.GLFW;
 
 //idea is to make it so that externally I could assign each keybind an action
 public class CoreKeybindsRegister {
-    public static final String KEY_CATEGORY_CORE = "key.category.origins.origins_mod";
-    public static final String ABILITY_1 = "key.origins.ability_1";
-    public static final String ABILITY_2 = "key.origins.ability_2";
-    public static final String ABILITY_3 = "key.origins.ability_3";
-    public static final String ABILITY_4 = "key.origins.ability_4";
-    public static final String ABILITY_5 = "key.origins.ability_5";
-    public static final String ABILITY_6 = "key.origins.ability_6";
+    public static final String KEY_CATEGORY_CORE = "key.category.core.core_mod";
+    public static final String ABILITY_1 = "key.core.ability_1";
+    public static final String ABILITY_2 = "key.core.ability_2";
+    public static final String ABILITY_3 = "key.core.ability_3";
+    public static final String ABILITY_4 = "key.core.ability_4";
+    public static final String ABILITY_5 = "key.core.ability_5";
+    public static final String ABILITY_6 = "key.core.ability_6";
 
     public static KeyBinding ability_1;
     public static KeyBinding ability_2;
