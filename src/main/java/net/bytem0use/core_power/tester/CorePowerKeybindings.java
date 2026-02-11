@@ -1,7 +1,6 @@
 package net.bytem0use.core_power.tester;
 
 import com.eliotlash.mclib.math.functions.classic.Mod;
-import net.bytem0use.core_power.api.abilities.keys.Ability1;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.option.KeyBinding;
@@ -31,7 +30,7 @@ public class CorePowerKeybindings {
     }
 
     public static void register() {
-        climb = KeyBindingHelper.registerKeyBinding(new Ability1(
+        climb = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 CLIMB,
                 InputUtil.Type.KEYSYM,
                 GLFW.GLFW_KEY_G,
