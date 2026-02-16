@@ -14,8 +14,11 @@ public class CorePowerModEffects {
         return Registry.register(Registries.STATUS_EFFECT, new Identifier(CorePower.MOD_ID, name), power);
     }
 
-    public static final StatusEffect ARACHNID_EFFECT = registerPower("arachnid_effect",
-            new ArachnidEffect(StatusEffectCategory.BENEFICIAL, 55550, PowersTag.ENTITY_INFLUENCED));
+    public static final StatusEffect SPEEDSTER = registerPower("speedster",
+            new SpeedsterEffect(StatusEffectCategory.BENEFICIAL, 55550, PowersTag.ENHANCER));
+
+    public static final StatusEffect IMPACT_DAMAGE = registerPower("impact_damage",
+            new ImpactDamagePassive(StatusEffectCategory.BENEFICIAL, 55550, PowersTag.ENHANCER));
 
     public static void registerEffects() {
         CorePower.LOGGER.info("Registering Mod Effects for " + CorePower.MOD_ID);

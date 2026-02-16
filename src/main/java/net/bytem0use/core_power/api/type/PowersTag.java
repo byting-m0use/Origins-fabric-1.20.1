@@ -5,5 +5,6 @@ public enum PowersTag {
     PROTECTIVE,
     PSYCHIC,
     WORLD_BENDABLE,
-    ENTITY_INFLUENCED
+    ENTITY_INFLUENCED,
+    ENHANCER
 }

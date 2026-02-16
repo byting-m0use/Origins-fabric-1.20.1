@@ -1,6 +1,6 @@
 package net.bytem0use.core_power.client;
 
-import net.bytem0use.core_power.api.PowerAPI;
+import net.bytem0use.core_power.api.abilities.base.PowerAPI;
 import net.bytem0use.core_power.tester.CorePowerKeybindings;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;

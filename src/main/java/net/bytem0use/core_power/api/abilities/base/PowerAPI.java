@@ -1,4 +1,4 @@
-package net.bytem0use.core_power.api;
+package net.bytem0use.core_power.api.abilities.base;
 
 import net.bytem0use.core_power.api.type.PowersTag;
 import net.minecraft.entity.effect.StatusEffect;
