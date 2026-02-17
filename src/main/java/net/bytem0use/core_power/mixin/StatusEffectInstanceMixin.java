@@ -18,6 +18,7 @@ public abstract class StatusEffectInstanceMixin {
     @Shadow public static final int INFINITE = -1;
     @Shadow private int duration;
     @Shadow private boolean showIcon;
+    @Shadow private StatusEffectInstance hiddenEffect;
 
     /**
      * @author ByteM0use
@@ -49,13 +50,13 @@ public abstract class StatusEffectInstanceMixin {
 
     /**
      * @author ByteM0use
-     * @reason Make effect hidden when extending CorePassive class
+     * @reason Make effect icon in HUD hidden when extending PowerAPI class
      */
     @Overwrite
     public boolean shouldShowIcon() {
         StatusEffectInstance self = (StatusEffectInstance) (Object) this;
-        if (CorePassive.class.isAssignableFrom(self.getEffectType().getClass())) {
-            return false;  // Should not show effect for passives
+        if (PowerAPI.class.isAssignableFrom(self.getEffectType().getClass())) {
+            return false;  // Should not show icon
         }
         return this.showIcon;
     }

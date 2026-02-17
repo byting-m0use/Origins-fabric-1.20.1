@@ -1,5 +1,6 @@
 package net.bytem0use.core_power;
 
+import net.bytem0use.core_power.api.abilities.passive.PassiveRegistry;
 import net.bytem0use.core_power.attributes.CorePowerAttributes;
 import net.bytem0use.core_power.tester.CorePowerModEffects;
 import net.fabricmc.api.ModInitializer;
@@ -23,5 +24,7 @@ public class CorePower implements ModInitializer {
         CorePowerAttributes.registerAttributes();
 
         CorePowerModEffects.registerEffects();
+
+        PassiveRegistry.register();
 	}
 }

@@ -1,6 +1,8 @@
 package net.bytem0use.core_power.tester;
 
 import net.bytem0use.core_power.CorePower;
+import net.bytem0use.core_power.api.abilities.base.CorePassive;
+import net.bytem0use.core_power.api.abilities.passive.premade_passives.ImpactDamagePassive;
 import net.bytem0use.core_power.api.type.PowersTag;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
@@ -16,9 +18,6 @@ public class CorePowerModEffects {
 
     public static final StatusEffect SPEEDSTER = registerPower("speedster",
             new SpeedsterEffect(StatusEffectCategory.BENEFICIAL, 55550, PowersTag.ENHANCER));
-
-    public static final StatusEffect IMPACT_DAMAGE = registerPower("impact_damage",
-            new ImpactDamagePassive(StatusEffectCategory.BENEFICIAL, 55550, PowersTag.ENHANCER));
 
     public static void registerEffects() {
         CorePower.LOGGER.info("Registering Mod Effects for " + CorePower.MOD_ID);

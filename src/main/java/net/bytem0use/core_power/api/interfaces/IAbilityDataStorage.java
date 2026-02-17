@@ -1,4 +1,4 @@
-package net.bytem0use.core_power.api.accessors;
+package net.bytem0use.core_power.api.interfaces;
 
 public interface IAbilityDataStorage {
 
