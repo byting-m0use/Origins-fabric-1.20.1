@@ -1,6 +1,7 @@
 package net.bytem0use.core_power.api.abilities.base;
 
 import net.bytem0use.core_power.api.abilities.passive.PassiveRegistry;
+import net.bytem0use.core_power.api.type.PassiveList;
 import net.bytem0use.core_power.api.type.PassiveTags;
 import net.bytem0use.core_power.api.type.PowersTag;
 import net.minecraft.entity.effect.StatusEffect;
@@ -19,17 +20,14 @@ public abstract class PowerAPI extends StatusEffect {
         this.tag = tag;
     }
 
-    public static void checkForTag() {
+    public static void getTag() {
+        StatusEffectCategory beneficial = StatusEffectCategory.BENEFICIAL;
     }
 
-    public void getTag(StatusEffect effect, PowersTag pTag, PowerAPI api) {
+    public static void hasTag(StatusEffect effect, PowersTag pTag, PowerAPI api) {
     }
 
-    public boolean hasTag(PowersTag pTag) {
-        return this.tag == pTag;
-    }
-
-    public PowerAPI addPassive(PassiveRegistry passive) {
+    public PowerAPI addPassive(PassiveList passive) {
         return this;
     }
 

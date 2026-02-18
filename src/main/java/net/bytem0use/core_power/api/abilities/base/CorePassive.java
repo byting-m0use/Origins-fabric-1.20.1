@@ -13,18 +13,6 @@ public class CorePassive extends PowerAPI{
         super(category, color, tagP, tag);
     }
 
-    @Override
-    public void getTag(StatusEffect effect, PowersTag pTag, PowerAPI api) {
-        api.hasTag(pTag);
-        super.getTag(effect, pTag, api);
-    }
-
-    @Override
-    public boolean hasTag(PowersTag pTag) {
-        super.hasTag(pTag);
-        return false;
-    }
-
     public void getPassive(CorePassive passive) {
     }
 
